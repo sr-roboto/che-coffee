@@ -1,10 +1,10 @@
-import "./style.css";
+import './style.css';
 
 // Obtener el formulario de inicio de sesión
-const $form = document.getElementById("login-form");
+const $form = document.getElementById('login-form');
 
 // Añadir un evento de submit al formulario
-$form.addEventListener("submit", async (e) => {
+$form.addEventListener('submit', async (e) => {
   // Evitar que el formulario recargue la página
   e.preventDefault();
 
@@ -15,17 +15,20 @@ $form.addEventListener("submit", async (e) => {
   const entries = Object.fromEntries(formData.entries());
 
   // Realizar una solicitud POST a la API de inicio de sesión
-  fetch("http://localhost:4321/auth/sign-in", {
-    method: "POST",
+  fetch('http://localhost:4321/auth/sign-in', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify(entries),
   }).then((response) => {
     if (response.ok) {
       // ! REDIRIGIR AL USUARIO A LA PÁGINA PRINCIPAL
+      window.location.href = '/';
     } else {
       // ! MOSTRAR UN MENSAJE DE ERROR AL USUARIO
+      alert('¡Credenciales inválidas! Por favor, inténtalo de nuevo.');
     }
   });
 });

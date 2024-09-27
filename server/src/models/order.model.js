@@ -1,18 +1,23 @@
-import crypto from "crypto";
+import crypto from 'crypto';
 
 let ordersCollection = [];
 
 // Crear una orden
 export const createOrder = (coffee, userId) => {
-  const newOrder = {
-    id: crypto.randomUUID().toString(),
-    coffee,
-    userId,
-  };
+  try {
+    const newOrder = {
+      id: crypto.randomUUID().toString(),
+      coffee,
+      userId,
+    };
 
-  ordersCollection.push(newOrder);
+    ordersCollection.push(newOrder);
 
-  return newOrder;
+    return newOrder;
+  } catch (error) {
+    console.error(error);
+    res.json({ message: error.message });
+  }
 };
 
 export const getOrders = (userId) => {

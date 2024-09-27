@@ -1,5 +1,5 @@
-import { hash, genSalt, compare } from "bcrypt";
-import crypto from "crypto";
+import { hash, genSalt, compare } from 'bcrypt';
+import crypto from 'crypto';
 
 const usersCollection = [];
 
@@ -12,7 +12,8 @@ export const createUser = async (user) => {
   const newUser = {
     // Generate a random id
     id: crypto.randomUUID().toString(),
-    ...user,
+    username: user.username,
+    email: user.email,
     password: hashedPassword,
   };
 
